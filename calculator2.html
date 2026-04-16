@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    body {
+      background-image:url('https://hips.hearstapps.com/hmg-prod/images/cinque-terre-manarola-royalty-free-image-1009824980-1548260386.jpg?crop=0.981xw:1.00xh;0,0');
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .calculator {
+      background-color: rgb(185, 221, 236); 
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      box-shadow: 10px 15px 20px rgb(3, 103, 114)
+    }
+    .display input {
+      width: 95%;
+      height: 40px;
+      margin-bottom: 10px;
+      text-align: right;
+      font-size: 24px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .buttons input {
+      padding: 10px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      background-color:rgb(252, 243, 243);
+      cursor: pointer;
+    }
+    .buttons .operator {
+      background-color:rgb(127, 165, 180);
+    }
+    .buttons .clear {
+      background-color: rgb(235, 159, 132);
+    }
+    .buttons .enter {
+      background-color: rgb(169, 222, 169) ;
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display">
+      <input type="text" id="display" value="0" >
+    </div>
+    <div class="buttons">
+      <input type="button" class="operator" value="+" onclick="addOperation('+')">
+      <input type="button" class="operator" value="-" disabled>
+      <input type="button" class="operator" value="*" disabled>
+      <input type="button" class="operator" value="/" disabled>
+      <input type="button" value="0" onclick="addNumber('0')">
+      <input type="button" value="5" onclick="addNumber('5')">
+      <input type="button" value="10" onclick="addNumber('10')">
+      <input type="button" value="15" onclick="addNumber('15')">
+      <input type="button" class="clear" value="clear" onclick="clearDisplay()">
+      <input type="button" class="enter" value="Enter" onclick="calculateResult()">
+    </div>
+  </div>
+
+  <script>
+    let expression = '';
+    let display = document.getElementById('display');
+
+    function addNumber(num) {
+      expression += num;
+      updateDisplay();
+    }
+
+    function addOperation(op) {
+      expression += op;
+      updateDisplay();
+    }
+
+    function clearDisplay() {
+      expression = '';
+      updateDisplay();
+    }
+
+    function calculateResult() {
+      const add = expression.split('+');
+      let result = +add[0];
+      for (let i = 1; i < add.length; i++) {
+        result += +add[i];
+      }
+      display.value = result;
+      expression = result.toString();
+    }
+
+    function updateDisplay() {
+      display.value = expression;
+    }
+  </script>
+</body>
+</html>
+    
+</body>
+</html>
